@@ -47,9 +47,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
               underline: tab.id === active,
             })}
           >
-            <Link href={{ pathname: "/", query: { tab: tab.id } }}>
-              {tab.name}
-            </Link>
+            <Link href={{ query: { tab: tab.id } }}>{tab.name}</Link>
           </div>
         ))}
       </div>

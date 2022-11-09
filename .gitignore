@@ -37,3 +37,4 @@ next-env.d.ts
 
 # user
 .idea
+.env.local
