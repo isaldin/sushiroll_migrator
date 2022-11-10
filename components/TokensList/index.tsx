@@ -1,31 +1,29 @@
 import React, { useEffect, useState } from "react";
 import classname from "classnames";
-("classnames");
 import api from "../../configs/api";
 import CopyButton from "../ common/CopyButton";
+import { Token } from "../../types/token.type";
+import { useWeb3React } from "@web3-react/core";
 
 type TokensListProps = {
   //
 };
 
-type Token = {
-  symbol: string;
-  name: string;
-  address: string;
-  decimals: number;
-  logoURI: string;
-};
-
 const TokensList: React.FC<TokensListProps> = (props) => {
   const [tokens, setTokens] = useState<Array<Token>>([]);
+  const { chainId = null } = useWeb3React();
 
   useEffect(() => {
-    fetch(`${api.baseUrl}/${api.endpoints.tokens}`)
+    if (!chainId) {
+      setTokens([]);
+      return;
+    }
+    fetch(api.tokens(chainId))
       .then((res) => res.json())
       .then((tokens) => {
         setTokens(tokens);
       });
-  }, []);
+  }, [chainId]);
 
   return (
     <div>

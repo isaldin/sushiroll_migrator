@@ -4,6 +4,8 @@
     "prettier"
   ],
   "rules": {
-    "max-len": [1, { "code": 100 }]
-  }
+    "max-len": [1, { "code": 100 }],
+    "unused-imports/no-unused-imports": 2
+  },
+  "plugins": ["unused-imports"]
 }
