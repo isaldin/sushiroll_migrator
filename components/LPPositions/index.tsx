@@ -22,8 +22,8 @@ const LPPositions: React.FC<LPPositionsProps> = (props) => {
   const [tokenAmount1, setTokenAmount1] = useState(0);
   const [tokenAmount2, setTokenAmount2] = useState(0);
 
-  const { chainId, account: address } = useWeb3React();
-  const contract = useContract("UniswapV3Positions", chainId || null);
+  const { account: address } = useWeb3React();
+  const contract = useContract("UniswapV3Positions");
 
   useEffect(() => {
     localStorage.setItem("Token1", token1);

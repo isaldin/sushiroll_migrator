@@ -1,22 +1,23 @@
 import contractAddressesMap, { ContractName } from "../configs/contracts";
-import { Chain } from "../constants/chains";
 import { useMemo } from "react";
 import abisMap from "../configs/abi";
 import { ethers } from "ethers";
-import { Nullable } from "../types/common.types";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
+import { chainIdOrNull } from "../utils/chainIdByRawValue";
 
-const useContract = (contract: ContractName, chain: Nullable<Chain>) => {
-  const { library } = useWeb3React<Web3Provider>();
+const useContract = (contract: ContractName, customAddress?: string) => {
+  const { chainId: chainIdRaw, library } = useWeb3React<Web3Provider>();
+  const chainId = chainIdOrNull(chainIdRaw);
 
   return useMemo(() => {
-    if (!library || !chain) {
+    if (!library || !chainId) {
       return null;
     }
 
-    const addressRaw = contractAddressesMap[chain][contract];
-    const address = addressRaw && addressRaw !== "" && addressRaw;
+    const addressRaw = contractAddressesMap[chainId][contract];
+    const address =
+      customAddress || (addressRaw && addressRaw !== "" && addressRaw);
 
     if (!address) {
       return null;
@@ -26,7 +27,7 @@ const useContract = (contract: ContractName, chain: Nullable<Chain>) => {
     const signer = library?.getSigner();
 
     return new ethers.Contract(address, abi, signer);
-  }, [library, contract, chain]);
+  }, [library, contract, chainId]);
 };
 
 export default useContract;

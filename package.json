@@ -12,6 +12,7 @@
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
+    "@types/utf8": "^3.0.1",
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
     "classnames": "^2.3.2",
@@ -19,13 +20,16 @@
     "eslint-config-next": "13.0.2",
     "ethers": "^5.7.2",
     "next": "13.0.2",
+    "rambda": "^7.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-unused-imports": "^2.0.0",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
